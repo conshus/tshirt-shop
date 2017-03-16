@@ -1,0 +1,60 @@
+.flex {
+  display: flex;
+}
+.shirt {
+  position: relative;
+  border: .2rem solid #95c3e4;
+  display: inline-block;
+}
+.design {
+  border-bottom: .2rem solid #95c3e4;
+
+}
+.fa-undo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #95c3e4;
+  font-size: 2rem !important;
+  border-right: .2rem solid #95c3e4;
+  border-bottom: .2rem solid #95c3e4;
+  padding: .1rem;
+}
+/*.fa {
+  border: .2rem solid #95c3e4;
+  font-size: 2rem !important;
+  color: #95c3e4;
+  width: 100%
+}*/
+menu ul{
+  margin: 0;
+  padding: 0;
+}
+menu li{
+  display: inline-block;
+  width: 20%;
+}
+.fa-exchange {
+  color: #95c3e4;
+  font-size: 2rem !important;
+  border: .2rem solid #95c3e4;
+  padding: .1rem;
+}
+.fa-heart-o {
+  color: #95c3e4;
+  font-size: 2rem !important;
+  border: .2rem solid #95c3e4;
+  padding: .1rem;
+}
+.fa-square {
+  color: #95c3e4;
+  font-size: 2rem !important;
+  border: .2rem solid #95c3e4;
+  padding: .1rem;
+}
+.fa-shopping-cart {
+  color: #95c3e4;
+  font-size: 2rem !important;
+  border: .2rem solid #95c3e4;
+  padding: .1rem;
+}
