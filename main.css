@@ -1,13 +1,25 @@
 .flex {
   display: flex;
 }
+.vcenter{
+  align-items: center;
+}
+.hcenter{
+  justify-content: center;
+}
+.space_around{
+  justify-content: space-around;
+}
+.flex_end{
+  align-items: flex-end;
+}
 .shirt {
   position: relative;
   border: .2rem solid #95c3e4;
   display: inline-block;
 }
 .design {
-  border-bottom: .2rem solid #95c3e4;
+  /*border-bottom: .2rem solid #95c3e4;*/
 
 }
 .fa-undo {
@@ -26,6 +38,13 @@
   color: #95c3e4;
   width: 100%
 }*/
+menu {
+  margin: 0;
+  padding: 0;
+}
+menu::before{
+  margin: 0;
+}
 menu ul{
   margin: 0;
   padding: 0;
@@ -34,27 +53,10 @@ menu li{
   display: inline-block;
   width: 20%;
 }
-.fa-exchange {
+.item {
   color: #95c3e4;
-  font-size: 2rem !important;
+  font-size: 3rem;
   border: .2rem solid #95c3e4;
-  padding: .1rem;
-}
-.fa-heart-o {
-  color: #95c3e4;
-  font-size: 2rem !important;
-  border: .2rem solid #95c3e4;
-  padding: .1rem;
-}
-.fa-square {
-  color: #95c3e4;
-  font-size: 2rem !important;
-  border: .2rem solid #95c3e4;
-  padding: .1rem;
-}
-.fa-shopping-cart {
-  color: #95c3e4;
-  font-size: 2rem !important;
-  border: .2rem solid #95c3e4;
-  padding: .1rem;
+  width:20%;
+  height: 5rem;
 }
