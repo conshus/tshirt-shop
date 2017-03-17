@@ -19,10 +19,16 @@ html {
 .flex_end{
   align-items: flex-end;
 }
+.flex_wrap{
+  flex-wrap: wrap;
+}
 .shirt {
   position: relative;
   /*border: .2rem solid #95c3e4;*/
   display: inline-block;
+}
+.display {
+  line-height: 0;
 }
 .design {
   /*border-bottom: .2rem solid #95c3e4;*/
@@ -30,9 +36,15 @@ html {
   border-bottom-width: 0;
   padding: 2rem;
   box-sizing: border-box;
-  line-height: .7;
-
-
+}
+.blue {
+  color: #95c3e4;
+}
+.pink {
+  color: #e577a9;
+}
+.yellow {
+  color: #e1ae75;
 }
 .fa-undo {
   position: absolute;
@@ -41,8 +53,8 @@ html {
   color: #95c3e4;
   font-size: 2rem !important;
   border-right: .2rem solid #95c3e4;
-  border-bottom: .2rem solid #95c3e4;
-  padding: .1rem;
+  border-top: .2rem solid #95c3e4;
+  padding: .7rem;
 }
 /*.fa {
   border: .2rem solid #95c3e4;
@@ -54,7 +66,7 @@ menu {
   margin: 0;
   padding: 0;
 }
-menu::before{
+menu:before{
   margin: 0;
 }
 menu ul{
@@ -70,13 +82,14 @@ menu li{
   font-size: 1.5rem;
   border: .2rem solid #95c3e4;
   width:20%;
+  margin: -1px;
   height: 3rem;
   transition: background-color 1s, color 1s;
 }
 menu .item:nth-child(4) .fa {
   /*background: red;*/
   border: .2rem solid white;
-  color: #95c3e4;
+  /*color: #95c3e4;*/
 }
 .item:hover{
   background-color: #95c3e4;
@@ -85,4 +98,8 @@ menu .item:nth-child(4) .fa {
 .info {
   color: #95c3e4;
   font-size: 1.5rem;
+  margin-top: 1rem;
+}
+.price {
+  font-weight: bold;
 }
