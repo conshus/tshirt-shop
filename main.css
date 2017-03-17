@@ -26,6 +26,8 @@ html {
   position: relative;
   /*border: .2rem solid #95c3e4;*/
   display: inline-block;
+  margin-top: 2rem;
+  /*max-width: 33%*/
 }
 .display {
   line-height: 0;
@@ -55,6 +57,7 @@ html {
   border-right: .2rem solid #95c3e4;
   border-top: .2rem solid #95c3e4;
   padding: .7rem;
+  transition: background-color 1s, color 1s;
 }
 /*.fa {
   border: .2rem solid #95c3e4;
@@ -62,6 +65,10 @@ html {
   color: #95c3e4;
   width: 100%
 }*/
+.fa-undo:hover{
+  background-color: #95c3e4;
+  color: white;
+}
 menu {
   margin: 0;
   padding: 0;
@@ -89,6 +96,7 @@ menu li{
 menu .item:nth-child(4) .fa {
   /*background: red;*/
   border: .2rem solid white;
+  padding:-1px 0px;
   /*color: #95c3e4;*/
 }
 .item:hover{
