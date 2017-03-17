@@ -1,3 +1,6 @@
+html {
+  font-family: 'Roboto', sans-serif;
+}
 .flex {
   display: flex;
 }
@@ -10,16 +13,25 @@
 .space_around{
   justify-content: space-around;
 }
+.space_between {
+  justify-content: space-between;
+}
 .flex_end{
   align-items: flex-end;
 }
 .shirt {
   position: relative;
-  border: .2rem solid #95c3e4;
+  /*border: .2rem solid #95c3e4;*/
   display: inline-block;
 }
 .design {
   /*border-bottom: .2rem solid #95c3e4;*/
+  border: 0.2rem solid #95c3e4;
+  border-bottom-width: 0;
+  padding: 2rem;
+  box-sizing: border-box;
+  line-height: .7;
+
 
 }
 .fa-undo {
@@ -55,8 +67,22 @@ menu li{
 }
 .item {
   color: #95c3e4;
-  font-size: 3rem;
+  font-size: 1.5rem;
   border: .2rem solid #95c3e4;
   width:20%;
-  height: 5rem;
+  height: 3rem;
+  transition: background-color 1s, color 1s;
+}
+menu .item:nth-child(4) .fa {
+  /*background: red;*/
+  border: .2rem solid white;
+  color: #95c3e4;
+}
+.item:hover{
+  background-color: #95c3e4;
+  color: white;
+}
+.info {
+  color: #95c3e4;
+  font-size: 1.5rem;
 }
