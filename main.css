@@ -4,6 +4,9 @@ html {
 .flex {
   display: flex;
 }
+.fcolumn {
+  flex-direction: column;
+}
 .vcenter{
   align-items: center;
 }
@@ -86,17 +89,11 @@ menu li{
   width: 20%;
   margin: -1px;
   height: 3rem;
-  /*transition: all 2s;*/
-  /*transition: background-color 1s ease, color 1s ease, transform 7s ease;*/
-  transition-property: background-color color top;
-  transition-duration: 1.5s;
-  transition-timing-function: ease;
+  transition: background-color 1s ease, color 1s ease;
 }
 menu .item:nth-child(4) .fa {
-  /*background: red;*/
   border: .2rem solid white;
   padding: -1px 0px;
-  /*color: #95c3e4;*/
 }
 .item:hover{
   background-color: #95c3e4;
@@ -113,20 +110,22 @@ menu .item:nth-child(4) .fa {
 .submenu{
   position: absolute;
   bottom: 12rem;
-  /*left:-25%;*/
-  /*transform: translateY(0%);*/
+  transform: translateY(6rem);
   border: .2rem solid #95c3e4;
   background-color: white;
-  width: auto;
+  width: 100%;
   padding: 1rem;
+  opacity: 0;
   z-index: 5;
+  pointer-events: none;
+  transition: transform .5s, opacity .5s;
 }
 .submenu:before {
     content: "\f0d7";
     font-family: FontAwesome;
     position: absolute;
     bottom: -2.24rem;
-    left:28%;
+    left:40%;
     font-size: 3rem;
 }
 .submenu:after {
@@ -134,35 +133,30 @@ menu .item:nth-child(4) .fa {
     font-family: FontAwesome;
     position: absolute;
     bottom: -2rem;
-    left:28%;
+    left:40%;
     font-size: 3rem;
     color: white;
 }
 .item:hover .submenu{
-  /*transform: translateY(-500%);*/
+  transform: translateY(9rem);
   color: #95c3e4;
-  bottom: 3rem;
+  opacity: 1;
 }
 .submenu img {
   width:2rem;
 }
-/*.mock_shirt {
-  position: relative;
-}*/
 .mock_shirt {
   font-size: .2rem;
   width: 7rem;
   height: 7rem;
-/*  position: absolute;
-  top: .6rem;
-  left: .5rem;*/
 }
 .mock_shirt {
   background-image: url('assets/tshirt.svg');
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   content: "assets/tshirt.svg";
   background-size: 2rem;
-  width: 2rem;
+  width: 100%;
   height: 2rem;
 }
