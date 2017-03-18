@@ -1,6 +1,18 @@
 html {
   font-family: 'Roboto', sans-serif;
 }
+.blue {
+  color: #95c3e4;
+}
+.pink {
+  color: #e577a9;
+}
+.yellow {
+  color: #e1ae75;
+}
+.green {
+  color: #8bb992;
+}
 .flex {
   display: flex;
 }
@@ -25,7 +37,7 @@ html {
 .flex_wrap{
   flex-wrap: wrap;
 }
-.shirt {
+.store_item {
   position: relative;
   display: inline-block;
   margin-top: 2rem;
@@ -36,22 +48,27 @@ html {
   padding: 2rem;
   box-sizing: border-box;
   line-height: 0;
+  position: relative;
+}
+.shirt {
+  position:relative;
 }
 .design {
+  position: absolute;
+  left: 0;
   transform: rotateY(0deg);
+  backface-visibility: hidden;
   transition: transform .5s ease;
 }
-.blue {
-  color: #95c3e4;
+.design_back {
+  position: relative;
+  left: 0;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  transition: transform .5s ease;
 }
-.pink {
-  color: #e577a9;
-}
-.yellow {
-  color: #e1ae75;
-}
-.green {
-  color: #8bb992;
+.design:hover .design_back {
+  transform: rotateY(360deg);
 }
 .fa-undo {
   position: absolute;
@@ -68,11 +85,24 @@ html {
   background-color: #95c3e4;
   color: white;
 }
-.design .fa-undo:hover {
-  transform: rotateY(180deg);
+.fa-undo:hover .design:hover {
+  transform: rotateY(0deg);
 }
-.design:hover {
+.shirt:hover .design{
   transform: rotateY(180deg);
+  opacity: 1;
+}
+.shirt:hover .design_back{
+  transform: rotateY(0deg);
+  opacity: 1;
+}
+.fa-undo:hover .design{
+  transform: rotateY(180deg);
+  opacity: 1;
+}
+.fa-undo:hover .design_back{
+  transform: rotateY(0deg);
+  opacity: 1;
 }
 menu {
   margin: 0;
