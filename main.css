@@ -67,9 +67,14 @@ html {
   transform: rotateY(180deg);
   transition: transform .5s ease;
 }
-.design:hover .design_back {
-  transform: rotateY(360deg);
+/* Keeping just in case we want to flip when hover over shirt.
+.shirt:hover .design{
+  transform: rotateY(180deg);
 }
+.shirt:hover .design_back{
+  transform: rotateY(0deg);
+}
+*/
 .fa-undo {
   position: absolute;
   top: 0;
@@ -85,24 +90,14 @@ html {
   background-color: #95c3e4;
   color: white;
 }
-.fa-undo:hover .design:hover {
-  transform: rotateY(0deg);
-}
-.shirt:hover .design{
+/* Not sure if I'm grasping this correctly, but apparently the + (could also
+use ~, but that targets all following matching elements) to change an element
+isn't directly "related". I still have to look more into this. */
+.fa-undo:hover + .shirt .design{
   transform: rotateY(180deg);
-  opacity: 1;
 }
-.shirt:hover .design_back{
+.fa-undo:hover + .shirt .design_back{
   transform: rotateY(0deg);
-  opacity: 1;
-}
-.fa-undo:hover .design{
-  transform: rotateY(180deg);
-  opacity: 1;
-}
-.fa-undo:hover .design_back{
-  transform: rotateY(0deg);
-  opacity: 1;
 }
 menu {
   margin: 0;
@@ -131,7 +126,6 @@ menu li{
 }
 menu .item:nth-child(4) .fa {
   border: .2rem solid white;
-  padding: -1px 0px;
 }
 .item:hover{
   background-color: #95c3e4;
@@ -179,9 +173,6 @@ menu .item:nth-child(4) .fa {
   transform: translateY(9rem);
   color: #95c3e4;
   opacity: 1;
-}
-.submenu img {
-  width:2rem;
 }
 .mock_shirt {
   font-size: .2rem;
