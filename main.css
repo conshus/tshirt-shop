@@ -31,13 +31,15 @@ html {
   margin-top: 2rem;
 }
 .display {
-  line-height: 0;
-}
-.design {
   border: 0.2rem solid #95c3e4;
   border-bottom-width: 0;
   padding: 2rem;
   box-sizing: border-box;
+  line-height: 0;
+}
+.design {
+  transform: rotateY(0deg);
+  transition: transform .5s ease;
 }
 .blue {
   color: #95c3e4;
@@ -60,11 +62,17 @@ html {
   border-right: .2rem solid #95c3e4;
   border-top: .2rem solid #95c3e4;
   padding: .7rem;
-  transition: background-color 1s, color 1s;
+  transition: background-color .5s, color .5s;
 }
 .fa-undo:hover{
   background-color: #95c3e4;
   color: white;
+}
+.design .fa-undo:hover {
+  transform: rotateY(180deg);
+}
+.design:hover {
+  transform: rotateY(180deg);
 }
 menu {
   margin: 0;
@@ -89,7 +97,7 @@ menu li{
   width: 20%;
   margin: -1px;
   height: 3rem;
-  transition: background-color 1s ease, color 1s ease;
+  transition: background-color .5s ease, color .5s ease;
 }
 menu .item:nth-child(4) .fa {
   border: .2rem solid white;
