@@ -24,16 +24,13 @@ html {
 }
 .shirt {
   position: relative;
-  /*border: .2rem solid #95c3e4;*/
   display: inline-block;
   margin-top: 2rem;
-  /*max-width: 33%*/
 }
 .display {
   line-height: 0;
 }
 .design {
-  /*border-bottom: .2rem solid #95c3e4;*/
   border: 0.2rem solid #95c3e4;
   border-bottom-width: 0;
   padding: 2rem;
@@ -48,6 +45,9 @@ html {
 .yellow {
   color: #e1ae75;
 }
+.green {
+  color: #8bb992;
+}
 .fa-undo {
   position: absolute;
   top: 0;
@@ -59,12 +59,6 @@ html {
   padding: .7rem;
   transition: background-color 1s, color 1s;
 }
-/*.fa {
-  border: .2rem solid #95c3e4;
-  font-size: 2rem !important;
-  color: #95c3e4;
-  width: 100%
-}*/
 .fa-undo:hover{
   background-color: #95c3e4;
   color: white;
@@ -85,18 +79,23 @@ menu li{
   width: 20%;
 }
 .item {
+  position: relative;
   color: #95c3e4;
   font-size: 1.5rem;
   border: .2rem solid #95c3e4;
-  width:20%;
+  width: 20%;
   margin: -1px;
   height: 3rem;
-  transition: background-color 1s, color 1s;
+  /*transition: all 2s;*/
+  /*transition: background-color 1s ease, color 1s ease, transform 7s ease;*/
+  transition-property: background-color color top;
+  transition-duration: 1.5s;
+  transition-timing-function: ease;
 }
 menu .item:nth-child(4) .fa {
   /*background: red;*/
   border: .2rem solid white;
-  padding:-1px 0px;
+  padding: -1px 0px;
   /*color: #95c3e4;*/
 }
 .item:hover{
@@ -110,4 +109,60 @@ menu .item:nth-child(4) .fa {
 }
 .price {
   font-weight: bold;
+}
+.submenu{
+  position: absolute;
+  bottom: 12rem;
+  /*left:-25%;*/
+  /*transform: translateY(0%);*/
+  border: .2rem solid #95c3e4;
+  background-color: white;
+  width: auto;
+  padding: 1rem;
+  z-index: 5;
+}
+.submenu:before {
+    content: "\f0d7";
+    font-family: FontAwesome;
+    position: absolute;
+    bottom: -2.24rem;
+    left:28%;
+    font-size: 3rem;
+}
+.submenu:after {
+    content: "\f0d7";
+    font-family: FontAwesome;
+    position: absolute;
+    bottom: -2rem;
+    left:28%;
+    font-size: 3rem;
+    color: white;
+}
+.item:hover .submenu{
+  /*transform: translateY(-500%);*/
+  color: #95c3e4;
+  bottom: 3rem;
+}
+.submenu img {
+  width:2rem;
+}
+/*.mock_shirt {
+  position: relative;
+}*/
+.mock_shirt {
+  font-size: .2rem;
+  width: 7rem;
+  height: 7rem;
+/*  position: absolute;
+  top: .6rem;
+  left: .5rem;*/
+}
+.mock_shirt {
+  background-image: url('assets/tshirt.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  content: "assets/tshirt.svg";
+  background-size: 2rem;
+  width: 2rem;
+  height: 2rem;
 }
