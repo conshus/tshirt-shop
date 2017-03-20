@@ -148,9 +148,9 @@ menu .item:nth-child(4) .fa {
   width: 100%;
   padding: 1rem;
   opacity: 0;
-  z-index: 5;
-  pointer-events: none;
-  transition: transform .5s, opacity .5s;
+  z-index: -1;
+  /*pointer-events: none;*/
+  transition: transform .5s, opacity .5s, z-index .25s;
 }
 .submenu:before {
     content: "\f0d7";
@@ -176,6 +176,7 @@ menu .item:nth-child(4) .fa {
   transform: translateY(9rem);
   color: #95c3e4;
   opacity: 1;
+  z-index: 5;
 }
 .mock_shirt {
   background-image: url('assets/tshirt.svg');
