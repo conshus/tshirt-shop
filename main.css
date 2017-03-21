@@ -171,6 +171,10 @@ menu .item:nth-child(4) .fa {
 }
 .submenu i{
   font-size: 2rem;
+  transition: font-size .5s;
+}
+.submenu i:hover {
+  font-size: 3rem;
 }
 .item:hover .submenu{
   transform: translateY(9rem);
