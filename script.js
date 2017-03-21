@@ -15,3 +15,29 @@ function logEvent(){
 }
 let mouseClick = document.querySelector('body');
 mouseClick.addEventListener('click', logEvent);
+/*Initialize Product Holders with default values and assign buttons*/
+let productHolder = [];
+let storeItems = document.querySelectorAll('.store_item');
+let cartButtons = document.querySelectorAll('.fa-shopping-cart');
+let shirtSizes = document.querySelectorAll('.shirtSize');
+let shirtTitles = document.querySelectorAll('.title');
+let shirtPrices = document.querySelectorAll('.price');
+let shirtColors = document.querySelectorAll('.colorSelected');
+console.log(storeItems);
+for (let i = 0; i < storeItems.length; i++) {
+  let cartButton = cartButtons[i];
+  let shirtSize = shirtSizes[i].textContent;
+  let shirtTitle = shirtTitles[i].textContent;
+  let shirtPrice = shirtPrices[i].textContent;
+  let shirtColor = shirtColors[i].classList[2];
+  console.log(shirtColor);
+  productHolder[i] = [shirtTitle,shirtPrice,shirtSize,shirtColor];
+  cartButton.addEventListener('click', function () {
+    productHolder[i][2] = shirtSizes[i].textContent;
+    productHolder[i][3] = shirtColors[i].classList[2];
+    console.log("shopping cart clicked! store item: "+ i)
+    console.log(productHolder[i]);
+  });
+}
+
+console.log(productHolder);
