@@ -15,8 +15,24 @@ function logEvent(){
 }
 let mouseClick = document.querySelector('body');
 mouseClick.addEventListener('click', logEvent);
+function addToCart(productArray){
+  let itemNumber = shoppingCart.length-1;
+  console.log(numberOfItems);
+  shoppingCart[itemNumber] = productArray;
+  console.log(shoppingCart);
+}
+
+function updateCart(){
+  let list = document.querySelector('#shoppingCartItems');
+  list.innerHTML = "";
+  for (let i=0; i < shoppingCart.length; i++){
+    list.innerHTML = list.innerHTML + "item "+ i +" added <br>";
+  }
+}
 /*Initialize Product Holders with default values and assign buttons*/
 let productHolder = [];
+let shoppingCart = [];
+let shoppingCartTotal = 0;
 let storeItems = document.querySelectorAll('.store_item');
 let cartButtons = document.querySelectorAll('.fa-shopping-cart');
 let shirtSizes = document.querySelectorAll('.shirtSize');
@@ -28,7 +44,7 @@ for (let i = 0; i < storeItems.length; i++) {
   let cartButton = cartButtons[i];
   let shirtSize = shirtSizes[i].textContent;
   let shirtTitle = shirtTitles[i].textContent;
-  let shirtPrice = shirtPrices[i].textContent;
+  let shirtPrice = parseInt(shirtPrices[i].textContent);
   let shirtColor = shirtColors[i].classList[2];
   console.log(shirtColor);
   productHolder[i] = [shirtTitle,shirtPrice,shirtSize,shirtColor];
@@ -37,6 +53,14 @@ for (let i = 0; i < storeItems.length; i++) {
     productHolder[i][3] = shirtColors[i].classList[2];
     console.log("shopping cart clicked! store item: "+ i)
     console.log(productHolder[i]);
+    shoppingCart[shoppingCart.length] = productHolder[i];
+    console.log(shoppingCart);
+
+    shoppingCartTotal = shoppingCartTotal + productHolder[i][1];
+    let element = document.querySelector("#shoppingCartTotal");
+    element.textContent = shoppingCartTotal;
+    console.log(shoppingCartTotal);
+    updateCart();
   });
 }
 
