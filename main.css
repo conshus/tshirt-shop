@@ -1,6 +1,9 @@
 html {
   font-family: 'Roboto', sans-serif;
 }
+body {
+  width:80vw;
+}
 .blue {
   color: #95c3e4;
 }
@@ -37,6 +40,9 @@ html {
 .flex_wrap{
   flex-wrap: wrap;
 }
+.hflex_end{
+  justify-content: flex-end;
+}
 .store_item {
   position: relative;
   display: inline-block;
@@ -72,6 +78,8 @@ html {
   top: 0;
   right: 0;
   width:20rem;
+  padding: 1rem;
+  overflow-y: auto;
 }
 /* Keeping just in case we want to flip when hover over shirt.
 .shirt:hover .design{
