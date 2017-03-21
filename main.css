@@ -188,4 +188,10 @@ menu .item:nth-child(4) .fa {
   width: 100%;
   height: 3rem;
   font-size: 1rem;
+  transition: background-size .5s, height .5s, font-size .5s;
+}
+.mock_shirt:hover {
+  background-size: 5rem;
+  height: 5rem;
+  font-size: 2rem;
 }
