@@ -26,7 +26,15 @@ function updateCart(){
   let list = document.querySelector('#shoppingCartItems');
   list.innerHTML = "";
   for (let i=0; i < shoppingCart.length; i++){
-    list.innerHTML = list.innerHTML + "item "+ i +" added <br>";
+    let productInfo = `
+    <div class="flex space_between">
+      <div>`+shoppingCart[i][0]+`</div>
+      <div>`+shoppingCart[i][3]+`</div>
+      <div>`+shoppingCart[i][2]+`</div>
+      <div>`+shoppingCart[i][1]+`</div>
+    </div>
+    `
+    list.innerHTML = list.innerHTML + productInfo;
   }
 }
 /*Initialize Product Holders with default values and assign buttons*/
@@ -34,7 +42,7 @@ let productHolder = [];
 let shoppingCart = [];
 let shoppingCartTotal = 0;
 let storeItems = document.querySelectorAll('.store_item');
-let cartButtons = document.querySelectorAll('.fa-shopping-cart');
+let cartButtons = document.querySelectorAll('.shoppingCartButton');
 let shirtSizes = document.querySelectorAll('.shirtSize');
 let shirtTitles = document.querySelectorAll('.title');
 let shirtPrices = document.querySelectorAll('.price');

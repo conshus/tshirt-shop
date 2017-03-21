@@ -67,6 +67,12 @@ html {
   transform: rotateY(180deg);
   transition: transform .5s ease;
 }
+.fixed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width:20rem;
+}
 /* Keeping just in case we want to flip when hover over shirt.
 .shirt:hover .design{
   transform: rotateY(180deg);
