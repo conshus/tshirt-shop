@@ -1,4 +1,4 @@
-function logEvent(){
+function logEvent(event){
   let parentElement = event.target.parentElement;
   let menuClassName = parentElement.parentElement.lastElementChild.className;
   let menuValue = parentElement.parentElement.lastElementChild.textContent;
