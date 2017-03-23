@@ -216,3 +216,11 @@ menu .item:nth-child(4) .fa {
 #shirtQuanity{
   /*visibility: hidden;*/
 }
+.soldOut{
+  color:red;
+  font-weight: bold;
+}
+.cartDisable{
+  background-color: red;
+  pointer-events: none;
+}
