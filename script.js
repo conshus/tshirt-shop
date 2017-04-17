@@ -51,6 +51,50 @@ function updateCart(){
   }
 }
 /*Initialize Shopping Cart values, Product Holders with default values and assign buttons*/
+
+//jQuery refactoring start....
+// Didn't need since already accomplished with CSS
+// let $shirtSizes = $('.shirtSize').parent();
+// $shirtSizes.hover(
+//   function(){
+//     $(this).addClass("hover");
+//     console.log("hover on");
+//   }, function(){
+//     $(this).removeClass("hover");
+//     console.log("hover off");
+//   }
+// );
+// console.log($shirtSizes);
+
+let $shirtTitles = $('.title');
+//console.log($shirtTitles);
+let $cartButton = $('.shoppingCartButton');
+$cartButton.on('click',function(e){
+  console.log('jQuery cartButton clicked');
+  let shirtTitle = $(this).parent().next().find('.title').text();
+  console.log(shirtTitle);
+  let shirtPrice = parseInt($(this).parent().next().find('.price').text());
+  console.log(shirtPrice);
+  let shirtSize = $(this).parent().find('.shirtSize').text();
+  console.log(shirtSize);
+  let shirtColor = $(this).parent().find('[colorselected]').attr('colorselected');
+  console.log(shirtColor);
+  //console.log($(this).parent().find('[colorselected]').attr('colorselected'));
+});
+let $shirtSizeSubmenu = $('.mock_shirt');
+$shirtSizeSubmenu.on('click',function(e){
+  console.log('jQuery size submenu clicked');
+});
+let $shirtColorSubmenu = $("[mockcolor]");
+//console.log($shirtColorSubmenu);
+$shirtColorSubmenu.on('click', function(e){
+  console.log($(this).parent().parent().prev().attr('colorselected'));
+  $(this).parent().parent().prev().attr('colorselected',$(this).attr('mockcolor'));
+  console.log($(this).attr('mockcolor'));
+});
+
+
+
 let productHolder = [];
 let shoppingCart = [];
 let shoppingCartSubtotal = 0;
