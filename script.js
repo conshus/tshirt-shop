@@ -6,6 +6,22 @@ let shoppingCartDiscountTotal = 0;
 let shirtTotal = 0;
 let sameShirtCounter = 1;
 
+//This is probably overkill, but I got it to work.
+$.get("tshirt/0",function(data){
+  $('#title0').text(data.style);
+  $('#price0').text(data.price);
+})
+
+$.get("tshirt/1",function(data){
+  $('#title1').text(data.style);
+  $('#price1').text(data.price);
+})
+
+$.get("tshirt/2",function(data){
+  $('#title2').text(data.style);
+  $('#price2').text(data.price);
+})
+
 function addToCart(productArray){
   let itemNumber = shoppingCart.length-1;
   shoppingCart[itemNumber] = productArray;
@@ -29,19 +45,13 @@ function removeLine(e){
   let cartSize = $(this).parent().find('.cartSize').text();
   let deleteRow;
   productHolder = [];
-  console.log(cartStyle,cartColor,cartSize);
-  console.log(shoppingCart);
-  console.log(productHolder);
   for (let i=0; i < shoppingCart.length; i++){
     if (cartStyle == shoppingCart[i][0] && cartColor == shoppingCart[i][3] && cartSize == shoppingCart[i][2]){
-      console.log(i);
       deleteRow = i;
     }
-
   }
   shoppingCartSubtotal = shoppingCartSubtotal - (shoppingCart[deleteRow][4]*shoppingCart[deleteRow][1]);
   shirtTotal = shirtTotal - shoppingCart[deleteRow][4];
-  console.log(shoppingCartSubtotal, shirtTotal);
   shoppingCart.splice(deleteRow,1);
   updateCart();
   updateTotal();
@@ -91,31 +101,35 @@ $shirtColorSubmenu.on('click', function(e){
 
 let $cartButton = $('.shoppingCartButton');
 $cartButton.on('click',function(e){
-  let shirtTitle = $(this).parent().next().find('.title').text();
-  let shirtPrice = parseInt($(this).parent().next().find('.price').text());
-  let shirtSize = $(this).parent().find('.shirtSize').text();
-  let shirtColor = $(this).parent().find('[colorselected]').attr('colorselected');
-  productHolder = [shirtTitle,shirtPrice,shirtSize,shirtColor,sameShirtCounter];
-  let currentConfiguration = [shirtTitle,shirtPrice,shirtSize,shirtColor,sameShirtCounter];
-  let foundMatch = false;
-  for (let j=0; j<shoppingCart.length; j++){
-    if ((shoppingCart[j][0]===currentConfiguration[0]) && (shoppingCart[j][1]===currentConfiguration[1]) && (shoppingCart[j][2]===currentConfiguration[2]) && (shoppingCart[j][3]===currentConfiguration[3])){
-      shoppingCart[j][4]++;
-      shirtTotal++;
-      foundMatch = true;
-      if (shoppingCart[j][4] >= 8){
-        $(this).addClass('cartDisable');
-        $(this).parent().next().find('.soldOut').text('SOLD OUT!')
+  let shirtTitle;
+  let shirtPrice;
+  $.get("tshirt/"+$(this).attr('id'),(data)=>{
+    shirtTitle = data.style;
+    shirtPrice = parseInt(data.price);
+    let shirtSize = $(this).parent().find('.shirtSize').text();
+    let shirtColor = $(this).parent().find('[colorselected]').attr('colorselected');
+    productHolder = [shirtTitle,shirtPrice,shirtSize,shirtColor,sameShirtCounter];
+    let currentConfiguration = [shirtTitle,shirtPrice,shirtSize,shirtColor,sameShirtCounter];
+    let foundMatch = false;
+    for (let j=0; j<shoppingCart.length; j++){
+      if ((shoppingCart[j][0]===currentConfiguration[0]) && (shoppingCart[j][1]===currentConfiguration[1]) && (shoppingCart[j][2]===currentConfiguration[2]) && (shoppingCart[j][3]===currentConfiguration[3])){
+        shoppingCart[j][4]++;
+        shirtTotal++;
+        foundMatch = true;
+        if (shoppingCart[j][4] >= 8){
+          $(this).addClass('cartDisable');
+          $(this).parent().next().find('.soldOut').text('SOLD OUT!')
+        }
       }
     }
-  }
-  if (foundMatch === false) {
-    shoppingCart[shoppingCart.length] = currentConfiguration;
-    shirtTotal++;
-  }
-  shoppingCartSubtotal = shoppingCartSubtotal + productHolder[1];
-  updateTotal();
-  updateCart();
+    if (foundMatch === false) {
+      shoppingCart[shoppingCart.length] = currentConfiguration;
+      shirtTotal++;
+    }
+    shoppingCartSubtotal = shoppingCartSubtotal + productHolder[1];
+    updateTotal();
+    updateCart();
+  });
 });
 
 function updateTotal(){
