@@ -1,4 +1,4 @@
-function logEvent(event){
+//function logEvent(event){
   //let parentElement = event.target.parentElement;
   //let menuClassName = parentElement.parentElement.lastElementChild.className;
   //let menuValue = parentElement.parentElement.lastElementChild.textContent;
@@ -20,9 +20,9 @@ function logEvent(event){
   //   let size = event.target.parentElement.parentElement.parentElement.parentElement.childNodes[5].lastElementChild.textContent;
   //   checkStock(style, size, color, event.target.parentElement.parentElement.parentElement.parentElement.parentElement);
   // }
-}
-let mouseClick = document.querySelector("body");
-mouseClick.addEventListener("click", logEvent);
+//}
+//let mouseClick = document.querySelector("body");
+//mouseClick.addEventListener("click", logEvent);
 function addToCart(productArray){
   let itemNumber = shoppingCart.length-1;
   shoppingCart[itemNumber] = productArray;
@@ -53,8 +53,9 @@ function checkStock(style, size, color, $eventTarget){
   // }
 }
 function updateCart(){
-  let list = document.querySelector("#shoppingCartItems");
-  list.innerHTML = "";
+  let $list = $("#shoppingCartItems").html('');
+  //let list = document.querySelector("#shoppingCartItems");
+  ///list.innerHTML = "";
   for (let i=0; i < shoppingCart.length; i++){
     let productInfo = `
     <div class="flex space_between">
@@ -63,7 +64,8 @@ function updateCart(){
       <div>`+shoppingCart[i][2]+`</div>`
       + `<div><span id="shirtQuanity">`+shoppingCart[i][4]+`x</span> $`+shoppingCart[i][1]+`</div>
     </div>`;
-    list.innerHTML = list.innerHTML + productInfo;
+    $list.append(productInfo);
+    //list.innerHTML = list.innerHTML + productInfo;
   }
 }
 /*Initialize Shopping Cart values, Product Holders with default values and assign buttons*/
@@ -82,15 +84,19 @@ function updateCart(){
 // );
 // console.log($shirtSizes);
 
-let $shirtTitles = $('.title');
+//let $shirtTitles = $('.title');
 //console.log($shirtTitles);
 
 let $shirtSizeSubmenu = $('.mock_shirt');
 $shirtSizeSubmenu.on('click',function(e){
+  let $shorter = $(this).parent().parent();
   $(this).parent().next().text($(this).text());
-  let color = $(this).parent().parent().next().find('[colorselected]').attr('colorselected');
-  let style = $(this).parent().parent().parent().next().find('.title').text();
-  let price = $(this).parent().parent().parent().next().find('.price').text();
+  let color = $shorter.next().find('[colorselected]').attr('colorselected');
+  let style = $shorter.parent().next().find('.title').text();
+  let price = $shorter.parent().next().find('.price').text();
+  // let color = $(this).parent().parent().next().find('[colorselected]').attr('colorselected');
+  // let style = $(this).parent().parent().parent().next().find('.title').text();
+  // let price = $(this).parent().parent().parent().next().find('.price').text();
   let size = $(this).parent().next().text($(this).text()).text();
   //console.log($(this).parent().parent().parent().next().find('.price').text());
   //console.log('jQuery size submenu clicked');
@@ -99,7 +105,7 @@ $shirtSizeSubmenu.on('click',function(e){
   //change size
   //console.log(size);
   let $toTheTop = $(this).parent().parent().parent().parent();
-  console.log($toTheTop);
+  //console.log($toTheTop);
   checkStock(style, size, color, $toTheTop);
 });
 
@@ -107,21 +113,30 @@ $shirtSizeSubmenu.on('click',function(e){
 let $shirtColorSubmenu = $("[mockcolor]");
 //console.log($shirtColorSubmenu);
 $shirtColorSubmenu.on('click', function(e){
-  $(this).parent().parent().prev().attr('colorselected',$(this).attr('mockcolor'));
-  $(this).parent().parent().parent().find('.fa.fa-stop').eq(0).removeClass().addClass('fa fa-stop '+$(this).attr('mockcolor'));
+  let $toTheTop = $(this).parent().parent().parent().parent().parent();
+  let $shorter = $(this).parent().parent();
+  $shorter.prev().attr('colorselected',$(this).attr('mockcolor'));
+  $shorter.parent().find('.fa.fa-stop').eq(0).removeClass().addClass('fa fa-stop '+$(this).attr('mockcolor'));
+  //$(this).parent().parent().prev().attr('colorselected',$(this).attr('mockcolor'));
+  //$(this).parent().parent().parent().find('.fa.fa-stop').eq(0).removeClass().addClass('fa fa-stop '+$(this).attr('mockcolor'));
   let color = $(this).attr('mockcolor');
   //console.log(color);
-  $(this).parent().parent().parent().parent().parent().find('.design').attr('src','assets/'+color+'-front.png');
-  $(this).parent().parent().parent().parent().parent().find('.design_back').attr('src','assets/'+color+'-back.png');
-  let style = $(this).parent().parent().parent().parent().parent().find('.title').text();
+  $toTheTop.find('.design').attr('src','assets/'+color+'-front.png');
+  $toTheTop.find('.design_back').attr('src','assets/'+color+'-back.png');
+  //$(this).parent().parent().parent().parent().parent().find('.design').attr('src','assets/'+color+'-front.png');
+  //$(this).parent().parent().parent().parent().parent().find('.design_back').attr('src','assets/'+color+'-back.png');
+  let style = $toTheTop.find('.title').text();
+  //let style = $(this).parent().parent().parent().parent().parent().find('.title').text();
   //console.log($(this).parent().parent().parent().parent().parent());
-  let price = parseInt($(this).parent().parent().parent().parent().parent().find('.price').text());
-  let size =$(this).parent().parent().parent().prev().find('.shirtSize').text();
+  let price = parseInt($toTheTop.find('.price').text());
+  //let price = parseInt($(this).parent().parent().parent().parent().parent().find('.price').text());
+  let size =$shorter.parent().prev().find('.shirtSize').text();
+  //let size =$(this).parent().parent().parent().prev().find('.shirtSize').text();
   //console.log($(this).parent().parent().parent().find('.fa.fa-stop').eq(0));
   //console.log($(this).parent().parent().prev().attr('colorselected'));
   //console.log($(this).attr('mockcolor'));
-  let $toTheTop = $(this).parent().parent().parent().parent().parent();
-  console.log($toTheTop);
+  //let $toTheTop = $(this).parent().parent().parent().parent().parent();
+  //console.log($toTheTop);
   checkStock(style, size, color, $toTheTop);
 });
 
@@ -186,20 +201,26 @@ $cartButton.on('click',function(e){
   //cartSubtotal.textContent = shoppingCartSubtotal;
   //let cartSubtotal = document.querySelector("#shoppingCartSubtotal");
   //cartSubtotal.textContent = shoppingCartSubtotal;
-  let discountLimit = document.querySelector("#discountLimit");
-  let discountLimitText = document.querySelector("#discountLimitText");
+  let $discountLimit = $("#discountLimit");
+  //let discountLimit = document.querySelector("#discountLimit");
+  let $discountLimitText = $("#discountLimitText");
+  //let discountLimitText = document.querySelector("#discountLimitText");
   if (shirtTotal < 5){
-    discountLimit.textContent = 5 - shirtTotal;
+    $discountLimit.text(5 - shirtTotal);
+    //discountLimit.textContent = 5 - shirtTotal;
   }
   if (shirtTotal >= 5){
-    discountLimitText.textContent = "YOU DID IT!"
+    $discountLimitText.text("YOU DID IT!");
+    //discountLimitText.textContent = "YOU DID IT!"
     shoppingCartDiscountTotal = (shoppingCartSubtotal*.05).toFixed(2);
   }
-  let shoppingCartDiscount = document.querySelector("#shoppingCartDiscount");
-  shoppingCartDiscount.textContent = shoppingCartDiscountTotal;
+  let $shoppingCartDiscount = $("#shoppingCartDiscount").text(shoppingCartDiscountTotal);
+  //let shoppingCartDiscount = document.querySelector("#shoppingCartDiscount");
+  //shoppingCartDiscount.textContent = shoppingCartDiscountTotal;
   shoppingCartTotal = shoppingCartSubtotal - shoppingCartDiscountTotal;
-  let shoppingCartTotalSpace = document.querySelector("#shoppingCartTotal");
-  shoppingCartTotalSpace.textContent = shoppingCartTotal.toFixed(2);
+  let $shoppingCartTotalSpace = $("#shoppingCartTotal").text(shoppingCartTotal.toFixed(2));
+  // let shoppingCartTotalSpace = document.querySelector("#shoppingCartTotal");
+  // shoppingCartTotalSpace.textContent = shoppingCartTotal.toFixed(2);
   updateCart();
 
 
