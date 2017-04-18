@@ -23,18 +23,43 @@ function checkStock(style, size, color, $eventTarget){
   }
 }
 
+function removeLine(e){
+  let cartStyle = $(this).parent().find('.cartStyle').text();
+  let cartColor = $(this).parent().find('.cartColor').text();
+  let cartSize = $(this).parent().find('.cartSize').text();
+  let deleteRow;
+  productHolder = [];
+  console.log(cartStyle,cartColor,cartSize);
+  console.log(shoppingCart);
+  console.log(productHolder);
+  for (let i=0; i < shoppingCart.length; i++){
+    if (cartStyle == shoppingCart[i][0] && cartColor == shoppingCart[i][3] && cartSize == shoppingCart[i][2]){
+      console.log(i);
+      deleteRow = i;
+    }
+
+  }
+  shoppingCartSubtotal = shoppingCartSubtotal - (shoppingCart[deleteRow][4]*shoppingCart[deleteRow][1]);
+  shirtTotal = shirtTotal - shoppingCart[deleteRow][4];
+  console.log(shoppingCartSubtotal, shirtTotal);
+  shoppingCart.splice(deleteRow,1);
+  updateCart();
+  updateTotal();
+}
 function updateCart(){
   let $list = $("#shoppingCartItems").html('');
   for (let i=0; i < shoppingCart.length; i++){
     let productInfo = `
     <div class="flex space_between">
-      <div>`+shoppingCart[i][0]+`</div>
-      <div>`+shoppingCart[i][3]+`</div>
-      <div>`+shoppingCart[i][2]+`</div>`
+      <div class='removeLine'>X</div>
+      <div class='cartStyle'>`+shoppingCart[i][0]+`</div>
+      <div class='cartColor'>`+shoppingCart[i][3]+`</div>
+      <div class='cartSize'>`+shoppingCart[i][2]+`</div>`
       + `<div><span id="shirtQuanity">`+shoppingCart[i][4]+`x</span> $`+shoppingCart[i][1]+`</div>
     </div>`;
     $list.append(productInfo);
   }
+  $('.removeLine').on('click', removeLine);
 }
 
 let $shirtSizeSubmenu = $('.mock_shirt');
@@ -89,18 +114,29 @@ $cartButton.on('click',function(e){
     shirtTotal++;
   }
   shoppingCartSubtotal = shoppingCartSubtotal + productHolder[1];
+  updateTotal();
+  updateCart();
+});
+
+function updateTotal(){
   let $cartSubtotal = $("#shoppingCartSubtotal").text(shoppingCartSubtotal);
   let $discountLimit = $("#discountLimit");
   let $discountLimitText = $("#discountLimitText");
+  let $shoppingCartItems = $("#shoppingCartItems");
+  if (shirtTotal == 0){
+    $shoppingCartItems.text('no items');
+  }
   if (shirtTotal < 5){
-    $discountLimit.text(5 - shirtTotal);
+    $discountLimitText.text(" ");
+    $discountLimit.text('Only '+(5 - shirtTotal)+' more!');
+    shoppingCartDiscountTotal = 0;
   }
   if (shirtTotal >= 5){
     $discountLimitText.text("YOU DID IT!");
+    $discountLimit.text('');
     shoppingCartDiscountTotal = (shoppingCartSubtotal*.05).toFixed(2);
   }
   let $shoppingCartDiscount = $("#shoppingCartDiscount").text(shoppingCartDiscountTotal);
   shoppingCartTotal = shoppingCartSubtotal - shoppingCartDiscountTotal;
   let $shoppingCartTotalSpace = $("#shoppingCartTotal").text(shoppingCartTotal.toFixed(2));
-  updateCart();
-});
+}
